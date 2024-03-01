@@ -35,7 +35,7 @@ class Favourites : Fragment() {
         favouriteTitlesDisplay.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         sharedPreferences = requireActivity().getSharedPreferences(requireContext().packageName,Context.MODE_PRIVATE)
         val editor:SharedPreferences.Editor = sharedPreferences.edit()
-        val getFavTitle = Gson().fromJson(sharedPreferences.getString("savefavtitle",""),FavoriteModel::class.java)
+        val getFavTitle = Gson().fromJson(sharedPreferences.getString("getfavouritetitles",""),FavoriteModel::class.java)
         if (getFavTitle != null && !getFavTitle.favouriteTitleId.isNullOrEmpty())
         {
             getFavouriteTitles = getFavTitle.favouriteTitleId!!
