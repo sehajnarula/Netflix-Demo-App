@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/accountstatus"
+    android:title="Account Status"/>
+<item
+    android:id="@+id/downloaded"
+    android:icon="@drawable/baseline_download_24"
+    android:title="Downloaded"></item>
+    <item
+        android:id="@+id/itemtwo"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemthree"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemfour"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemfive"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemsix"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemseven"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemeight"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemnine"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemten"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemeleven"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemtwelve"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemthirteen"
+        android:title=""></item>
+    <item
+        android:id="@+id/itemlogout"
+        android:title="Logout"></item>
+</menu>

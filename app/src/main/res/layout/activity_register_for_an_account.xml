@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".RegisterForAnAccount">
+<include
+    android:id="@+id/headersignup"
+    layout="@layout/headerlayout_forverticalviewactivity"/>
+    <EditText
+        android:id="@+id/userfirstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="30dp"
+        android:singleLine="true"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/headersignup"
+        android:hint="Enter First Name"/>
+    <EditText
+        android:id="@+id/userlastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:singleLine="true"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/userfirstname"
+        android:hint="Enter Last Name (Optional)"/>
+    <EditText
+        android:id="@+id/userdob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:singleLine="true"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/userlastname"
+        android:hint="Enter Date Of Birth"/>
+    <EditText
+        android:id="@+id/useremail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:singleLine="true"
+        android:inputType="textEmailAddress"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/userdob"
+        android:hint="Enter E-mail Address (Optional)"/>
+    <EditText
+        android:id="@+id/usersignupnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:singleLine="true"
+        android:inputType="none"
+        android:focusable="false"
+        android:layout_below="@id/useremail"
+        android:hint="Enter Phone Number"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/registeraccountbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signin_button_bg"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="Register"
+        android:layout_alignParentBottom="true"/>
+    <include
+        layout="@layout/common_progressbar"/>
+</RelativeLayout>

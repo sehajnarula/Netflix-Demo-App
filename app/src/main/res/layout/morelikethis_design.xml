@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="107dp"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginVertical="6dp"
+    android:layout_marginEnd="2dp">
+    <RelativeLayout
+        android:id="@+id/morelikethisdetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/morelikethismovieposter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/morelikethistoptenlabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:textAlignment="center"
+            android:layout_alignEnd="@id/morelikethismovieposter"
+            android:text="Top 10"
+            android:background="@drawable/topten_bg"
+            />
+        <TextView
+            android:id="@+id/morelikethisrecentlyaddedtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/recentlyadded_backgrou"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

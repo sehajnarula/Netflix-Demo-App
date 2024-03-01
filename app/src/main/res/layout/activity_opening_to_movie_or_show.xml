@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A6000000"
+    tools:context="com.demo.netflix.OpeningToMovieOrShow">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+       <RelativeLayout
+           android:id="@+id/movievideoparent"
+           android:layout_width="match_parent"
+           android:layout_height="250dp"
+           android:background="@color/black">
+
+           <VideoView
+               android:id="@+id/movievideo"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true" />
+
+           <RelativeLayout
+               android:id="@+id/movieshowdetailsmediaplayercontrols"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_centerInParent="true"
+               android:visibility="invisible">
+
+               <ImageView
+                   android:id="@+id/closeicon"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_alignParentStart="true"
+                   android:layout_marginStart="8dp"
+                   android:layout_marginTop="6dp"
+                   android:src="@drawable/baseline_arrow_back_videoplayer_24" />
+
+               <SeekBar
+                   android:id="@+id/videoseeker"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentStart="true"
+                   android:layout_alignParentBottom="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginBottom="5dp"
+                   android:layout_toStartOf="@id/zoominbutton"
+                   android:progressBackgroundTint="@color/white"
+                   android:progressTint="@color/red"
+                   android:thumbTint="@color/red" />
+
+               <ImageView
+                   android:id="@+id/zoominbutton"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_alignParentEnd="true"
+                   android:layout_alignParentBottom="true"
+                   android:src="@drawable/baseline_zoom_in_map_24" />
+
+               <ImageView
+                   android:id="@+id/playbuttonvideo"
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:layout_centerInParent="true" />
+
+               <ImageView
+                   android:id="@+id/backwardtenbutton"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_centerInParent="true"
+                   android:layout_marginEnd="20dp"
+                   android:layout_toLeftOf="@id/playbuttonvideo"
+                   android:src="@drawable/rewindtensmall" />
+
+               <ImageView
+                   android:id="@+id/forwardtenbutton"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_centerInParent="true"
+                   android:layout_marginStart="20dp"
+                   android:layout_toRightOf="@id/playbuttonvideo"
+                   android:src="@drawable/baseline_forward_10_24" />
+           </RelativeLayout>
+
+       </RelativeLayout>
+        <TextView
+            android:id="@+id/movienameondetailpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_below="@id/movievideoparent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:text="The Batman"/>
+        <TextView
+            android:id="@+id/newtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="2dp"
+            android:layout_below="@id/movienameondetailpage"
+            android:layout_marginLeft="15dp"
+            android:textColor="#228B22"
+            android:text="New"/>
+        <TextView
+            android:id="@+id/yearofrelease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/newtitle"
+            android:layout_below="@id/movienameondetailpage"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="3.5dp"
+            android:layout_marginLeft="5dp"
+            android:text="2022"/>
+        <TextView
+            android:id="@+id/censorrating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movienameondetailpage"
+            android:layout_toEndOf="@id/yearofrelease"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5.5dp"
+            android:text="U/A 16+"
+            android:paddingVertical="2dp"
+            android:paddingHorizontal="3dp"
+            android:background="#3E000000"/>
+        <TextView
+            android:id="@+id/durationofmovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/censorrating"
+            android:layout_below="@id/movienameondetailpage"
+            android:text="2h 56m"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="4.4dp"
+            android:layout_marginLeft="5dp"/>
+        <ImageView
+            android:id="@+id/resolutionofmovie"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_hd_24"
+            android:layout_below="@id/movienameondetailpage"
+            android:layout_toEndOf="@id/durationofmovie"
+            android:layout_marginTop="3.6dp"
+            android:layout_marginLeft="3dp"/>
+        <TextView
+            android:id="@+id/trendingtoptitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="1.5dp"
+            android:textAlignment="center"
+            android:layout_below="@id/newtitle"
+            android:text="Top 10"
+            android:background="@drawable/topten_bg"/>
+        <TextView
+            android:id="@+id/rankincategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="1.5dp"
+            android:layout_centerVertical="true"
+            android:layout_below="@id/yearofrelease"
+            android:layout_toEndOf="@id/trendingtoptitle"
+            android:text="#10 in movies today"/>
+        <RelativeLayout
+            android:id="@+id/playbuttonparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:layout_below="@id/trendingtoptitle"
+            android:background="@drawable/play_buttonbg">
+
+            <TextView
+                android:id="@+id/playbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableStart="@drawable/baseline_play_arrow_24"
+                android:text="Play"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/downloadbuttonparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginTop="10dp"
+            android:padding="8dp"
+            android:background="@drawable/download_buttonbg"
+            android:layout_below="@id/playbuttonparent">
+            <TextView
+                android:id="@+id/downloadbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@drawable/downloadiconsmall"
+                android:drawablePadding="3dp"
+                android:text="Download"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/moviesummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/downloadbuttonparent"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="15dp"
+            android:textSize="15sp"
+            android:text="When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.The film sees Batman, who has been fighting crime in Gotham City for two years, uncover corruption while pursuing the Riddler, a serial killer who targets Gotham's corrupt elite."
+            android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/moviecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moviesummary"
+            android:layout_marginTop="15dp"
+            android:layout_marginHorizontal="15dp"
+            android:textColor="#A6FFFFFF"
+            android:layout_marginLeft="15dp"
+            android:text="Cast: Robert Pattinson, Andy Serkis, Paul Dano, Jeffrey Wright, Zoe Kravitz, Colin Farrell"/>
+        <TextView
+            android:id="@+id/moviedirector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moviecast"
+            android:textColor="#A6FFFFFF"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="Director: Matt Reeves"/>
+        <TextView
+            android:id="@+id/mylistbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moviedirector"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="My List"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            android:drawableTop="@drawable/baseline_add_24"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"/>
+        <TextView
+            android:id="@+id/likebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Like"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:drawableTop="@drawable/baseline_thumb_up_off_alt_24"
+            android:layout_below="@id/moviedirector"/>
+        <TextView
+            android:id="@+id/recommendbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="Recommend"
+            android:textSize="16sp"
+            android:layout_marginTop="14dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:drawableTop="@drawable/telegramtransparenticon"
+            android:layout_below="@id/moviedirector"/>
+        <TextView
+            android:id="@+id/morelikethistext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="18dp"
+            android:layout_below="@id/mylistbutton"
+            android:text="More Like This"
+            android:layout_marginLeft="17dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/morelikethisrecommendationlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/morelikethistext"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/trailersandmoretext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/likebutton"
+            android:layout_centerHorizontal="true"
+            android:textColor="#A6FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="18dp"
+            android:text="Trailers &amp; More"/>
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.DemoNetflixApp"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".TitleDetailPage"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryMovieListVView"
+            android:exported="false" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterForAnAccount"
+            android:exported="false" />
+        <activity
+            android:name=".OtpScreen"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false" />
+        <activity
+            android:name=".YoutubeVideoScreen"
+            android:exported="false" />
+        <activity
+            android:name=".NewVideoActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".OnlyOnNetflixViewMore"
+            android:exported="false" />
+        <activity
+            android:name=".BecauseYouSawVerticalView"
+            android:exported="false" />
+        <activity
+            android:name=".NetflixTrendingListViewMore"
+            android:exported="false" />
+        <activity
+            android:name=".NetflixHistorySuggestions"
+            android:exported="false" />
+        <activity
+            android:name=".OpeningToMovieOrShow"
+            android:exported="false" />
+        <activity
+            android:name=".DemoNetflixHomePage"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.DemoNetflixApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
