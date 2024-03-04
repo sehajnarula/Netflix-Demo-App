@@ -29,6 +29,7 @@ class HomeScreen : AppCompatActivity() {
     lateinit var loggedinUserFirstName:TextView
     lateinit var firebaseAuth: FirebaseAuth
      val userDataList:ArrayList<UserData> = ArrayList()
+    lateinit var addTitle:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
@@ -39,6 +40,7 @@ class HomeScreen : AppCompatActivity() {
         logoutNavDrawer = findViewById(R.id.logoutnavdrawer)
         userPhoneNumber = findViewById(R.id.loggedinnumber)
         loggedinUserFirstName = findViewById(R.id.loggedinuserfirstname)
+        addTitle = findViewById(R.id.addtitlescreentext)
         userNumber = intent.getStringExtra("registernumber")
         fragmentDisplay(HomeView())
         userPhoneNumber.setText(userNumber)
@@ -117,6 +119,10 @@ class HomeScreen : AppCompatActivity() {
             editor.putBoolean("userloggedin",false)
             editor.apply()
             val intent = Intent(this@HomeScreen,LoginScreen::class.java)
+            startActivity(intent)
+        }
+        addTitle.setOnClickListener {
+            val intent = Intent(this@HomeScreen,AddTitle::class.java)
             startActivity(intent)
         }
     }

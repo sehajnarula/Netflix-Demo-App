@@ -139,7 +139,7 @@ class TitleDetailPage : AppCompatActivity() {
         }
         recommendation.setOnClickListener {
             try {
-                val intent = Intent(Intent.ACTION_SEND)
+                val intent = Intent(Intent.ACTION_SEND)         //sharelinkaction
                 intent.setType("text/plain")
                 var shareTitle:String = "\nLet Me Recommend You This Title\n\n"
                 shareTitle = shareTitle + "https://www.youtube.com/watch?v=${selectedTitleVideoId}"
@@ -193,7 +193,7 @@ class TitleDetailPage : AppCompatActivity() {
         {
             if (!favouriteList.contains(videoId))
             {
-                favouriteList.add(videoId)      //
+                favouriteList.add(videoId)      //addingtitle
             }
             favouritesIconCheck.visibility = View.VISIBLE
             favouritesIconunCheck.visibility = View.GONE

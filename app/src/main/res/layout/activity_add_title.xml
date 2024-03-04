@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".AddTitle">
+<include
+    android:id="@+id/addtitleheader"
+    layout="@layout/headerlayout_forverticalviewactivity"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/addtitleheader"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp">
+<EditText
+    android:id="@+id/addtitlename"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/signupedittext_bg"
+    android:padding="15dp"
+    android:layout_marginHorizontal="20dp"
+    android:hint="Title Name"
+    android:inputType="text"
+    android:imeOptions="actionNext"/>
+<EditText
+    android:id="@+id/addtitlevideoid"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/signupedittext_bg"
+    android:layout_marginTop="20dp"
+    android:padding="15dp"
+    android:layout_marginHorizontal="20dp"
+    android:hint="Video Id"
+    android:singleLine="true"
+    android:inputType="number"
+    android:imeOptions="actionNext"/>
+    <EditText
+        android:id="@+id/addtitledescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/signupedittext_bg"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Title Description"
+        android:inputType="text"
+        android:imeOptions="actionNext"/>
+    <Spinner
+        android:id="@+id/categorydropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="19dp"
+        android:background="@drawable/spinner_dropdown"
+        />
+</LinearLayout>
+    <include
+        layout="@layout/common_progressbar">
+    </include>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addtitlebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="Add Title"
+        android:background="@drawable/signin_button_bg"
+        android:layout_marginHorizontal="20dp"/>
+</RelativeLayout>

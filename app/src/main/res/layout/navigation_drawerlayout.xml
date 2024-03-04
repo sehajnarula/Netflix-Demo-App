@@ -53,7 +53,7 @@
         android:background="#33000000"
         android:layout_below="@id/profiledetailsheader"/>
     <TextView
-        android:id="@+id/downloadedtext"
+        android:id="@+id/addtitlescreentext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/viewbelowprofiledetails"
@@ -62,7 +62,7 @@
         android:textSize="24sp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
-        android:text="Downloaded"/>
+        android:text="Add Title"/>
 
 <View
     android:id="@+id/viewabovelogout"
