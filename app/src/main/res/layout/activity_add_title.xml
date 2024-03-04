@@ -35,7 +35,7 @@
     android:layout_marginHorizontal="20dp"
     android:hint="Video Id"
     android:singleLine="true"
-    android:inputType="number"
+    android:inputType="text"
     android:imeOptions="actionNext"/>
     <EditText
         android:id="@+id/addtitledescription"

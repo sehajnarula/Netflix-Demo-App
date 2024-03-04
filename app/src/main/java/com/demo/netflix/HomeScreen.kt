@@ -56,14 +56,7 @@ class HomeScreen : AppCompatActivity() {
                     fragmentScreenName.setText("Home")
                     navigationDrawerIcon.visibility = View.VISIBLE
                     navigationDrawerIcon.setOnClickListener {
-                        if (drawerLayout.isOpen)
-                        {
-                            drawerLayout.close()
-                        }
-                        else
-                        {
-                            drawerLayout.open()
-                        }
+                       drawerLayout.open()
                     }
                     true
                 }
@@ -71,12 +64,14 @@ class HomeScreen : AppCompatActivity() {
                     fragmentDisplay(Favourites())
                     fragmentScreenName.setText("Favourites")
                     navigationDrawerIcon.visibility = View.GONE
+                    drawerLayout.close()
                     true
                 }
                 R.id.categories -> {
                     fragmentDisplay(Categories())
                     fragmentScreenName.setText("Categories")
                     navigationDrawerIcon.visibility = View.GONE
+                    drawerLayout.close()
                     true
                 }
                 else ->{
@@ -124,6 +119,7 @@ class HomeScreen : AppCompatActivity() {
         addTitle.setOnClickListener {
             val intent = Intent(this@HomeScreen,AddTitle::class.java)
             startActivity(intent)
+            drawerLayout.close()
         }
     }
     public fun fragmentDisplay(fragment:Fragment)
