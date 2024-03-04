@@ -40,9 +40,6 @@
             android:name=".LoginScreen"
             android:exported="false" />
         <activity
-            android:name=".YoutubeVideoScreen"
-            android:exported="false" />
-        <activity
             android:name=".NewVideoActivity"
             android:exported="false"
             android:screenOrientation="landscape" />

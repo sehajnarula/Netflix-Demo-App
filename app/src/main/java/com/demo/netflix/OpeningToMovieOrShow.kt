@@ -133,10 +133,10 @@ class OpeningToMovieOrShow : AppCompatActivity() {
         closeIcon.setOnClickListener {
             finish()
         }
-        playButtonParent.setOnClickListener {
-            val movieIntent = Intent(this@OpeningToMovieOrShow, YoutubeVideoScreen::class.java)
-            startActivity(movieIntent)
-        }
+//        playButtonParent.setOnClickListener {
+//            val movieIntent = Intent(this@OpeningToMovieOrShow, YoutubeVideoScreen::class.java)
+//            startActivity(movieIntent)
+//        }
     }
     fun makeTextViewResizable(textView: TextView, maxLine: Int, expandText: String, viewMore: Boolean) {
         if (textView.tag == null) {
