@@ -63,7 +63,17 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
         android:text="Add Title"/>
-
+    <TextView
+        android:id="@+id/addcategoryscreentext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addtitlescreentext"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:text="Add Category"/>
 <View
     android:id="@+id/viewabovelogout"
     android:layout_width="match_parent"
