@@ -1,5 +1,4 @@
 package com.demo.netflix
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +13,6 @@ import com.demo.netflix.modelclasses.MovieDataClass
 import com.google.api.Logging
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
-
 class CategoryMovieListVView : AppCompatActivity() {
     lateinit var categoryMovieDisplay:RecyclerView
     lateinit var verticalThumbnailsAdapter: VerticalThumbnailsAdapter
