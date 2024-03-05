@@ -47,6 +47,7 @@ class TitleDetailPage : AppCompatActivity() {
     lateinit var favouritesIconCheck:ImageView
     var favouriteList:ArrayList<String> = ArrayList()
     lateinit var addtofavouritesbuttonparent:RelativeLayout
+    lateinit var showCategory:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_title_detail_page)
@@ -59,6 +60,7 @@ class TitleDetailPage : AppCompatActivity() {
         favouritesIconunCheck = findViewById(R.id.favouritesuncheck)
         favouritesIconCheck = findViewById(R.id.favouritescheck)
         addtofavouritesbuttonparent = findViewById(R.id.addtofavouritesbuttonparent)
+        showCategory = findViewById(R.id.showcategoryintitledesc)
         if (intent.getStringExtra("selectedcategorytitle")!=null)
         {
             movieDataParams = Gson().fromJson(intent.getStringExtra("selectedcategorytitle"),MovieDataClass::class.java)
@@ -87,6 +89,7 @@ class TitleDetailPage : AppCompatActivity() {
             favouritesIconunCheck.visibility = View.VISIBLE
             favouritesIconCheck.visibility = View.GONE
         }
+        showCategory.setText(selectedTitleCategory)
         val databaseLink = Firebase.firestore
         moreLikeThisList.layoutManager = GridLayoutManager(this@TitleDetailPage,3,GridLayoutManager.VERTICAL,false)
         lifecycle.addObserver(youtubePlayerView)
@@ -130,11 +133,11 @@ class TitleDetailPage : AppCompatActivity() {
         addtofavouritesbuttonparent.setOnClickListener {
             if (favouritesIconCheck.visibility==View.VISIBLE)
             {
-                saveFavourite(false,selectedTitleVideoId)
+                saveFavourite(false,selectedMovieTitleId)
             }
             else if (favouritesIconunCheck.visibility==View.VISIBLE)
             {
-                saveFavourite(true,selectedTitleVideoId)
+                saveFavourite(true,selectedMovieTitleId)
             }
         }
         recommendation.setOnClickListener {
@@ -187,13 +190,13 @@ class TitleDetailPage : AppCompatActivity() {
             }
         })
     }
-    public fun saveFavourite(isAdd:Boolean, videoId:String)
+    public fun saveFavourite(isAdd:Boolean, movieId:String)
     {
         if (isAdd)
         {
-            if (!favouriteList.contains(videoId))
+            if (!favouriteList.contains(movieId))
             {
-                favouriteList.add(videoId)      //addingtitle
+                favouriteList.add(movieId)      //addingtitle
             }
             favouritesIconCheck.visibility = View.VISIBLE
             favouritesIconunCheck.visibility = View.GONE
@@ -201,9 +204,9 @@ class TitleDetailPage : AppCompatActivity() {
         }
         else
         {
-            if (favouriteList.contains(videoId))
+            if (favouriteList.contains(movieId))
             {
-                favouriteList.remove(videoId)
+                favouriteList.remove(movieId)       //removefromfavourites
             }
             favouritesIconunCheck.visibility = View.VISIBLE
             favouritesIconCheck.visibility = View.GONE

@@ -35,11 +35,22 @@ class Favourites : Fragment() {
         favouriteTitlesDisplay.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         sharedPreferences = requireActivity().getSharedPreferences(requireContext().packageName,Context.MODE_PRIVATE)
         val editor:SharedPreferences.Editor = sharedPreferences.edit()
-        val getFavTitle = Gson().fromJson(sharedPreferences.getString("getfavouritetitles",""),FavoriteModel::class.java)
+
+        var data = sharedPreferences.getString("savefavtitle","")
+        Log.d("getSavedTitle",data!!)
+        val getFavTitle = Gson().fromJson(data,FavoriteModel::class.java)
+
         if (getFavTitle != null && !getFavTitle.favouriteTitleId.isNullOrEmpty())
         {
             getFavouriteTitles = getFavTitle.favouriteTitleId!!
+            Log.d("getFavouriteTitles",getFavouriteTitles.size.toString())
+            getData()
         }
+
+
+    }
+
+    fun getData(){
         val databaseLink = Firebase.firestore
         databaseLink.collection("appData").addSnapshotListener { value, error ->
             if (value!=null)
@@ -49,11 +60,18 @@ class Favourites : Fragment() {
                     if (dataSnapshot!=null)
                     {
                         val movieDataClass:MovieDataClass = dataSnapshot.toObject(MovieDataClass::class.java)!!
-                        movieDataClass.movieId = dataSnapshot.id
-                        favouriteTitlesData.add(movieDataClass)
+                        for(i in getFavouriteTitles){
+                            Log.d("sehaj",i.toString())
+                            Log.d("sehajone",movieDataClass.movieId.toString())
+                            if(i.equals(movieDataClass.videoId)){
+                                movieDataClass.movieId = dataSnapshot.id
+                                favouriteTitlesData.add(movieDataClass)
+                            }
+                        }
                     }
                 }
             }
+
             verticalThumbnailsAdapter = VerticalThumbnailsAdapter(favouriteTitlesData,requireContext())
             favouriteTitlesDisplay.adapter = verticalThumbnailsAdapter
             if (error!=null)
