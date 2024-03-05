@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".AddCategory">
+<include
+    layout="@layout/headerlayout_forverticalviewactivity"/>
+
+    <EditText
+        android:id="@+id/addcategorytext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/signupedittext_bg"
+        android:inputType="text"
+        android:hint="Enter Category Name"
+        android:padding="15dp"
+        android:singleLine="true" />
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/submitcategorybutton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="20dp"
+    android:layout_marginHorizontal="20dp"
+    android:textAllCaps="false"
+    android:textColor="@color/black"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:text="Add Category"
+    android:background="@drawable/signin_button_bg"/>
+<include
+    layout="@layout/common_progressbar"/>
+</RelativeLayout>
