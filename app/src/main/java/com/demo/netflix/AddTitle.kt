@@ -110,6 +110,7 @@ class AddTitle : AppCompatActivity() {
     public fun addData()
     {
         var savedTitle:Boolean = false
+        //val selectedSpinnerText:String = categoryDropDown.selectedItem.toString()
         for (i in movieList)
         {
             if (titleVideoid.text.toString().equals(i.videoId))
@@ -128,9 +129,11 @@ class AddTitle : AppCompatActivity() {
             putTitleData.put("title", titleName.text.toString())
             putTitleData.put("videoId", titleVideoid.text.toString())
             putTitleData.put("desc", titleDescription.text.toString())
+            //putTitleData.put("catId",selectedSpinnerText)
             dataBaseLink.collection("appData").document().set(putTitleData).addOnSuccessListener {
                 progressBar.visibility = View.GONE
                 Toast.makeText(this@AddTitle, "Title Added Successfully", Toast.LENGTH_SHORT).show()
+                finish()
             }.addOnFailureListener {
                 progressBar.visibility = View.GONE
                 Toast.makeText(this@AddTitle, "Unable To Add Title", Toast.LENGTH_SHORT).show()
