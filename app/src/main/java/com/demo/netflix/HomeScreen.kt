@@ -30,6 +30,7 @@ class HomeScreen : AppCompatActivity() {
     lateinit var firebaseAuth: FirebaseAuth
      val userDataList:ArrayList<UserData> = ArrayList()
     lateinit var addTitle:TextView
+    lateinit var addCategory:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
@@ -41,6 +42,7 @@ class HomeScreen : AppCompatActivity() {
         userPhoneNumber = findViewById(R.id.loggedinnumber)
         loggedinUserFirstName = findViewById(R.id.loggedinuserfirstname)
         addTitle = findViewById(R.id.addtitlescreentext)
+        addCategory = findViewById(R.id.addcategoryscreentext)
         userNumber = intent.getStringExtra("registernumber")
         fragmentDisplay(HomeView())
         userPhoneNumber.setText(userNumber)
@@ -119,7 +121,10 @@ class HomeScreen : AppCompatActivity() {
         addTitle.setOnClickListener {
             val intent = Intent(this@HomeScreen,AddTitle::class.java)
             startActivity(intent)
-            drawerLayout.close()
+        }
+        addCategory.setOnClickListener {
+            val intent = Intent(this@HomeScreen,AddCategory::class.java)
+            startActivity(intent)
         }
     }
     public fun fragmentDisplay(fragment:Fragment)
