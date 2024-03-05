@@ -1,5 +1,4 @@
 package com.demo.netflix.modelclasses
-
 data class UserData (
     var firstName:String?=null,
     var lastName:String?=null,
