@@ -8,7 +8,6 @@
     android:id="@+id/profiledetailsheader"
     android:layout_width="match_parent"
     android:layout_height="100dp">
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/userprofileicon"
         android:layout_width="40dp"
@@ -71,7 +70,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginStart="5dp"
         android:text="Add Category"/>
 <View
