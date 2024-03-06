@@ -21,7 +21,6 @@ class Favourites : Fragment() {
     lateinit var sharedPreferences: SharedPreferences
     val favouriteTitlesData:ArrayList<MovieDataClass> = ArrayList()
     var getFavouriteTitles:ArrayList<String> = ArrayList()
-    lateinit var movieDataParams:MovieDataClass
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,25 +33,20 @@ class Favourites : Fragment() {
         favouriteTitlesDisplay = view.findViewById(R.id.favouritetitlesdisplay)
         favouriteTitlesDisplay.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         sharedPreferences = requireActivity().getSharedPreferences(requireContext().packageName,Context.MODE_PRIVATE)
-        val editor:SharedPreferences.Editor = sharedPreferences.edit()
-
         var data = sharedPreferences.getString("savefavtitle","")
         Log.d("getSavedTitle",data!!)
         val getFavTitle = Gson().fromJson(data,FavoriteModel::class.java)
-
         if (getFavTitle != null && !getFavTitle.favouriteTitleId.isNullOrEmpty())
         {
             getFavouriteTitles = getFavTitle.favouriteTitleId!!
             Log.d("getFavouriteTitles",getFavouriteTitles.size.toString())
             getData()
         }
-
-
     }
-
     fun getData(){
         val databaseLink = Firebase.firestore
         databaseLink.collection("appData").addSnapshotListener { value, error ->
+            favouriteTitlesData.clear()
             if (value!=null)
             {
                 for (dataSnapshot in value.documents)
@@ -60,18 +54,21 @@ class Favourites : Fragment() {
                     if (dataSnapshot!=null)
                     {
                         val movieDataClass:MovieDataClass = dataSnapshot.toObject(MovieDataClass::class.java)!!
-                        for(i in getFavouriteTitles){
-                            Log.d("sehaj",i.toString())
-                            Log.d("sehajone",movieDataClass.movieId.toString())
-                            if(i.equals(movieDataClass.videoId)){
-                                movieDataClass.movieId = dataSnapshot.id
-                                favouriteTitlesData.add(movieDataClass)
-                            }
+                        movieDataClass.movieId = dataSnapshot.id
+                        if (getFavouriteTitles.contains(movieDataClass.movieId)){
+                            favouriteTitlesData.add(movieDataClass)
                         }
+//                        for(i in getFavouriteTitles){
+////                            Log.d("sehaj",i.toString())
+////                            Log.d("sehajone",movieDataClass.videoId.toString())
+//                            if(i.equals(movieDataClass.movieId)){
+//                                movieDataClass.movieId = dataSnapshot.id
+//                                favouriteTitlesData.add(movieDataClass)
+//                            }
+//                        }
                     }
                 }
             }
-
             verticalThumbnailsAdapter = VerticalThumbnailsAdapter(favouriteTitlesData,requireContext())
             favouriteTitlesDisplay.adapter = verticalThumbnailsAdapter
             if (error!=null)

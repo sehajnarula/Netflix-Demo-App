@@ -21,7 +21,7 @@ class CategorySpinnerAdapter(private var categoryList:ArrayList<CategoryData>,pr
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view = inflator.inflate(R.layout.common_spinnerlayout,parent,false)
         val spinnertext:TextView = view!!.findViewById(R.id.spinnertextdisplay)
-        spinnertext.text= categoryList[position].catDocId.toString()
+        spinnertext.text= categoryList[position].catName.toString()
         return view
     }
 }

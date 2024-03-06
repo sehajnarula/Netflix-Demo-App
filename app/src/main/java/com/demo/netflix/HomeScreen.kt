@@ -3,12 +3,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.demo.netflix.modelclasses.UserData
@@ -24,32 +21,50 @@ class HomeScreen : AppCompatActivity() {
     lateinit var drawerLayout:DrawerLayout
     lateinit var sharedPreferences: SharedPreferences
     lateinit var logoutNavDrawer:TextView
-    lateinit var userPhoneNumber:TextView
-    var userNumber:String?=null
+    lateinit var loggedInUserPhoneNumber:TextView
+    var loggedInuserData:String?=null
     lateinit var loggedinUserFirstName:TextView
     lateinit var firebaseAuth: FirebaseAuth
      val userDataList:ArrayList<UserData> = ArrayList()
     lateinit var addTitle:TextView
     lateinit var addCategory:TextView
+    val databaseLink = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
+        initializeData()
+        fragmentDisplay(HomeView())
+        sharedPreferences = getSharedPreferences(packageName, MODE_PRIVATE)
+        firebaseAuth = FirebaseAuth.getInstance()
+        navigationDrawerIcon.visibility = View.VISIBLE
+        fragmentScreenName.setText("Home")
+        clickListener()
+        getData()
+    }
+    fun initializeData()
+    {
         bottomNavigationView = findViewById(R.id.navigatescreensbottom)
         fragmentScreenName = findViewById(R.id.fragmentscreenname)
         navigationDrawerIcon = findViewById(R.id.navigationdrawericon)
         drawerLayout = findViewById(R.id.drawerlayoutparent)
         logoutNavDrawer = findViewById(R.id.logoutnavdrawer)
-        userPhoneNumber = findViewById(R.id.loggedinnumber)
+        loggedInUserPhoneNumber = findViewById(R.id.loggedinnumber)
         loggedinUserFirstName = findViewById(R.id.loggedinuserfirstname)
         addTitle = findViewById(R.id.addtitlescreentext)
         addCategory = findViewById(R.id.addcategoryscreentext)
-        userNumber = intent.getStringExtra("registernumber")
-        fragmentDisplay(HomeView())
-        userPhoneNumber.setText(userNumber)
-        sharedPreferences = getSharedPreferences(packageName, MODE_PRIVATE)
-        firebaseAuth = FirebaseAuth.getInstance()
-        navigationDrawerIcon.visibility = View.VISIBLE
-        fragmentScreenName.setText("Home")
+    }
+    fun getData()
+    {
+        val userData = sharedPreferences.getString("signinuser","")
+        val getUserData = Gson().fromJson(userData,UserData::class.java)
+        if (getUserData!=null && !getUserData.userId.isNullOrEmpty())
+        {
+            loggedinUserFirstName.setText(getUserData.firstName)
+            loggedInUserPhoneNumber.setText(getUserData.mobileNumber)
+        }
+    }
+    fun clickListener()
+    {
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId)
             {
@@ -58,7 +73,7 @@ class HomeScreen : AppCompatActivity() {
                     fragmentScreenName.setText("Home")
                     navigationDrawerIcon.visibility = View.VISIBLE
                     navigationDrawerIcon.setOnClickListener {
-                       drawerLayout.open()
+                        drawerLayout.open()
                     }
                     true
                 }
@@ -83,32 +98,6 @@ class HomeScreen : AppCompatActivity() {
                 }
             }
         }
-        val databaseLink = Firebase.firestore
-        databaseLink.collection("Users").addSnapshotListener { value, error ->
-            if (value!=null)
-            {
-                for (dataSnapshot in value.documents)
-                {
-                    if (dataSnapshot!=null)
-                    {
-                        val userData:UserData = dataSnapshot.toObject(UserData::class.java)!!
-                        userData.userId = dataSnapshot.id
-                        userDataList.add(userData)
-                    }
-                }
-            }
-            for (i in userDataList)
-            {
-                if (userNumber.equals(i.mobileNumber))
-                {
-                    loggedinUserFirstName.text = i.firstName
-                }
-            }
-            if (error!=null)
-            {
-                Log.d("navusererror",error.toString())
-            }
-        }
         logoutNavDrawer.setOnClickListener {
             firebaseAuth.signOut()
             val editor:SharedPreferences.Editor = sharedPreferences.edit()
@@ -127,7 +116,7 @@ class HomeScreen : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    public fun fragmentDisplay(fragment:Fragment)
+    private fun fragmentDisplay(fragment:Fragment)
     {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentviewer,fragment)

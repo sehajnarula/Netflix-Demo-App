@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -30,6 +31,7 @@ class AddTitle : AppCompatActivity() {
     lateinit var addTitle:Button
     lateinit var categoryDropDown:Spinner
     lateinit var categorySpinnerAdapter: CategorySpinnerAdapter
+    lateinit var selectedSpinnerText:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_title)
@@ -106,11 +108,22 @@ class AddTitle : AppCompatActivity() {
                 Log.d("categoryfetcherror",error.toString())
             }
         }
+        categoryDropDown.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedSpinnerText = categoryList[position].catDocId!!
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+        }
     }
     public fun addData()
     {
         var savedTitle:Boolean = false
-        //val selectedSpinnerText:String = categoryDropDown.selectedItem.toString()
         for (i in movieList)
         {
             if (titleVideoid.text.toString().equals(i.videoId))
@@ -129,7 +142,7 @@ class AddTitle : AppCompatActivity() {
             putTitleData.put("title", titleName.text.toString())
             putTitleData.put("videoId", titleVideoid.text.toString())
             putTitleData.put("desc", titleDescription.text.toString())
-            //putTitleData.put("catId",selectedSpinnerText)
+            putTitleData.put("catId",selectedSpinnerText)
             dataBaseLink.collection("appData").document().set(putTitleData).addOnSuccessListener {
                 progressBar.visibility = View.GONE
                 Toast.makeText(this@AddTitle, "Title Added Successfully", Toast.LENGTH_SHORT).show()

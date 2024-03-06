@@ -187,7 +187,6 @@ class OtpScreen : AppCompatActivity() {
             editor.putBoolean("userloggedin",true)
             editor.apply()
             val homeIntent = Intent(this@OtpScreen,HomeScreen::class.java)
-            homeIntent.putExtra("registernumber",phoneNumberFromLogin)
             startActivity(homeIntent)
         }
     }

@@ -73,7 +73,7 @@ class TitleDetailPage : AppCompatActivity() {
             titleDesc.setText(selectedTitleDesc)
         }
         sharedPreferences = getSharedPreferences(packageName, MODE_PRIVATE)
-        val favouritePref = Gson().fromJson(sharedPreferences.getString("getfavouritetitles",""),FavoriteModel::class.java)     //getting id from model
+        val favouritePref = Gson().fromJson(sharedPreferences.getString("savefavtitle",""),FavoriteModel::class.java)     //getting id from model
         if (favouritePref!=null && !favouritePref.favouriteTitleId.isNullOrEmpty()) {
             favouriteList = favouritePref.favouriteTitleId!!        //saving id from model
             if (favouriteList.contains(selectedMovieTitleId)) {
