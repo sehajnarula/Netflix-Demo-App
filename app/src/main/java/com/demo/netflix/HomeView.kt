@@ -16,10 +16,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.demo.netflix.adapter.MoviesDataAdapter
 import com.demo.netflix.adapter.SlideShowAdapter
-import com.demo.netflix.modelclasses.CategoryData
 import com.demo.netflix.modelclasses.MovieDataClass
-import com.demo.netflix.modelclasses.MovieListData
-import com.demo.netflix.modelclasses.SlideshowData
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlin.math.abs
@@ -48,6 +45,7 @@ class HomeView : Fragment() {
     val musicGenre:String = "vrx0t2we3Q8Glo5gZyiL"
     lateinit var slideShowAdapter: SlideShowAdapter
     lateinit var slideShowComponent: ViewPager2
+    lateinit var progressBar:RelativeLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +62,7 @@ class HomeView : Fragment() {
         viewMoreNews = view.findViewById(R.id.newsviewmore)
         viewMoreMusic = view.findViewById(R.id.musicviewmore)
         slideShowComponent = view.findViewById(R.id.bannerslideshowcomponent)
+        progressBar = view.findViewById(R.id.progressloader)
         kidsMovieList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
         kidsMovieList.setHasFixedSize(true)
         movieList = view.findViewById(R.id.movielist)
@@ -85,6 +84,7 @@ class HomeView : Fragment() {
             movieGenreListData.clear()
             newsGenreList.clear()
             musicGenreData.clear()
+            progressBar.visibility = View.VISIBLE
             if (value!=null)
             {
                 for (dataSnapshot in value.documents)
@@ -158,8 +158,10 @@ class HomeView : Fragment() {
             newsList.adapter = newsDataAdapter
             musicDataAdapter = MoviesDataAdapter(musicGenreData,requireContext())
             musicList.adapter = musicDataAdapter
+            progressBar.visibility = View.GONE
             if (error!=null)
             {
+                progressBar.visibility = View.GONE
                 Log.d("moviefetcherror",error.toString())
             }
         }
