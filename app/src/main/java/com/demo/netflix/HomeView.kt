@@ -46,7 +46,6 @@ class HomeView : Fragment() {
     val moviesGenre:String = "um0pU5eFrzoVVAe5XNA2"
     val newsGenre:String = "r8GEFWIkFSLqITeOIwf5"
     val musicGenre:String = "vrx0t2we3Q8Glo5gZyiL"
-    val categoryList:ArrayList<CategoryData> = ArrayList()
     lateinit var slideShowAdapter: SlideShowAdapter
     lateinit var slideShowComponent: ViewPager2
     override fun onCreateView(
@@ -81,24 +80,6 @@ class HomeView : Fragment() {
         newsList.setHasFixedSize(true)
         slideShowComponent.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val databaseLink = Firebase.firestore
-//        databaseLink.collection("categories").addSnapshotListener { value, error ->
-//            if (value!=null)
-//            {
-//                for (dataSnapshot in value.documents)
-//                {
-//                    if (dataSnapshot!=null)
-//                    {
-//                        val categoryData:CategoryData = dataSnapshot.toObject(CategoryData::class.java)!!
-//                        categoryData.catDocId = dataSnapshot.id
-//                        categoryList.add(categoryData)
-//                    }
-//                }
-//            }
-//            if (error!=null)
-//            {
-//                Log.d("moviecategoryerror",error.toString())
-//            }
-//        }
         databaseLink.collection("appData").addSnapshotListener { value, error ->
             kidsMovieData.clear()
             movieGenreListData.clear()
@@ -201,14 +182,12 @@ class HomeView : Fragment() {
     }
     private val runnable = Runnable {
         //slideShowComponent.currentItem = slideShowComponent.currentItem+1
-
         val newPage: Int = if ((slideShowComponent.currentItem + 1)< slideShowList.size){
             slideShowComponent.currentItem+1
         } else {
             0
         }
         slideShowComponent.currentItem = newPage
-
     }
     private fun setUpTransformer() {
         val transformer = CompositePageTransformer()
