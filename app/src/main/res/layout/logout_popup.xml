@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:id="@+id/popupdesignparent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_bg"
+    android:layout_marginHorizontal="15dp"
+    android:padding="30dp"
+    android:layout_centerVertical="true">
+    <TextView
+        android:id="@+id/logoutmessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:layout_centerHorizontal="true"
+        android:text="Are you sure you want to Logout?"/>
+    <LinearLayout
+        android:id="@+id/logoutpopupbuttonparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/logoutmessage">
+     <androidx.appcompat.widget.AppCompatButton
+         android:id="@+id/logout_yes"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:textAllCaps="false"
+         android:layout_marginEnd="3dp"
+         android:textSize="15sp"
+         android:textColor="@color/white"
+         android:textStyle="bold"
+         android:background="@drawable/logout_yesbtnbg"
+         android:text="Yes"/>
+     <androidx.appcompat.widget.AppCompatButton
+         android:id="@+id/logout_no"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:textAllCaps="false"
+         android:textSize="15sp"
+         android:textStyle="bold"
+         android:layout_marginEnd="3dp"
+         android:text="No"/>
+    </LinearLayout>
+</RelativeLayout>
+</RelativeLayout>
