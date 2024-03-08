@@ -196,6 +196,7 @@ class RegisterForAnAccount : AppCompatActivity() {
             val intent = Intent(this@RegisterForAnAccount,DemoNetflixHomePage::class.java)
             startActivity(intent)
         }.addOnFailureListener {
+            Toast.makeText(this@RegisterForAnAccount, "Unable To Register Account", Toast.LENGTH_SHORT).show()
         }
     }
     private fun closeKeyboard(view: EditText)
