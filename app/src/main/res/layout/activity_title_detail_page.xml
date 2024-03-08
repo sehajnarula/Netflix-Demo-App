@@ -71,18 +71,6 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
     <TextView
-        android:id="@+id/showcategoryintitledesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="20dp"
-        android:drawableTop="@drawable/baseline_categorydetailpage_24"
-        android:layout_below="@id/titledesc"/>
-    <TextView
         android:id="@+id/dynamicrecommendbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

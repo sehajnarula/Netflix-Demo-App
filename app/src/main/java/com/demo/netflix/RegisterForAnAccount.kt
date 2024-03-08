@@ -48,49 +48,8 @@ class RegisterForAnAccount : AppCompatActivity() {
         loginScreenPhoneNumber = intent.getStringExtra("registernumber")
         userPhoneNumber.setText(loginScreenPhoneNumber)
         screenName.setText("Sign Up")
-        userDob.setOnClickListener {
-            datePicker()
-        }
+        clickListeners()
         manageUserProfileData()
-        registerAccount.setOnClickListener {
-        if (TextUtils.isEmpty(userFirstName.text.toString()))
-        {
-            Toast.makeText(this@RegisterForAnAccount, "Please fill your first name", Toast.LENGTH_SHORT).show()
-        }
-        else if (TextUtils.isEmpty(userDob.text.toString()))
-        {
-            Toast.makeText(this, "Please enter your birth date", Toast.LENGTH_SHORT).show()
-        }
-        else if (ageCalculator(userDob.text.toString())==false)
-        {
-            Toast.makeText(this@RegisterForAnAccount, "Age should be 18 or above to register an account", Toast.LENGTH_SHORT).show()
-        }
-//            else if (!CommonFunctions.isValidEmail(userEmail.text.toString()))
-//        {
-//            Toast.makeText(this@RegisterForAnAccount, "Please enter a valid E-mail", Toast.LENGTH_SHORT).show()
-//        }
-            else{
-                var savedUserData:Boolean = false
-            for(i in userDataList)
-            {
-                if (userPhoneNumber.text.toString().equals(i.mobileNumber))
-                {
-                    savedUserData = true
-                }
-            }
-            if (savedUserData)
-            {
-                Toast.makeText(this@RegisterForAnAccount, "An account already exists with this phone number", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                addData()
-            }
-        }
-            closeKeyboard(userPhoneNumber)
-        }
-        backArrow.setOnClickListener {
-            finish()
-        }
     }
     public fun initializeData(){
         screenName = findViewById(R.id.screenname)
@@ -102,6 +61,50 @@ class RegisterForAnAccount : AppCompatActivity() {
         userPhoneNumber = findViewById(R.id.usersignupnumber)
         progressBar = findViewById(R.id.progressloader)
         registerAccount = findViewById(R.id.registeraccountbutton)
+    }
+    fun clickListeners(){
+        userDob.setOnClickListener {
+            datePicker()
+        }
+        registerAccount.setOnClickListener {
+            if (TextUtils.isEmpty(userFirstName.text.toString()))
+            {
+                Toast.makeText(this@RegisterForAnAccount, "Please fill your first name", Toast.LENGTH_SHORT).show()
+            }
+            else if (TextUtils.isEmpty(userDob.text.toString()))
+            {
+                Toast.makeText(this, "Please enter your birth date", Toast.LENGTH_SHORT).show()
+            }
+            else if (ageCalculator(userDob.text.toString())==false)
+            {
+                Toast.makeText(this@RegisterForAnAccount, "Age should be 18 or above to register an account", Toast.LENGTH_SHORT).show()
+            }
+//            else if (!CommonFunctions.isValidEmail(userEmail.text.toString()))
+//        {
+//            Toast.makeText(this@RegisterForAnAccount, "Please enter a valid E-mail", Toast.LENGTH_SHORT).show()
+//        }
+            else{
+                var savedUserData:Boolean = false
+                for(i in userDataList)
+                {
+                    if (userPhoneNumber.text.toString().equals(i.mobileNumber))
+                    {
+                        savedUserData = true
+                    }
+                }
+                if (savedUserData)
+                {
+                    Toast.makeText(this@RegisterForAnAccount, "An account already exists with this phone number", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    addData()
+                }
+            }
+            closeKeyboard(userPhoneNumber)
+        }
+        backArrow.setOnClickListener {
+            finish()
+        }
     }
     fun manageUserProfileData()
     {
