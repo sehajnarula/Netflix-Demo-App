@@ -79,6 +79,10 @@ class RegisterForAnAccount : AppCompatActivity() {
             {
                 Toast.makeText(this@RegisterForAnAccount, "Age should be 18 or above to register an account", Toast.LENGTH_SHORT).show()
             }
+            else if(registerAccount.text.equals("Update Profile"))
+            {
+                updateData()
+            }
 //            else if (!CommonFunctions.isValidEmail(userEmail.text.toString()))
 //        {
 //            Toast.makeText(this@RegisterForAnAccount, "Please enter a valid E-mail", Toast.LENGTH_SHORT).show()
@@ -117,6 +121,9 @@ class RegisterForAnAccount : AppCompatActivity() {
            userPhoneNumber.setText(getUserData.mobileNumber)
            userEmail.setText(getUserData.emailAddress)
            userDob.setText(getUserData.dateOfBirth)
+           userDocId = getUserData.userId
+           userFirstName.isFocusable = false
+           userDob.isFocusable = false
        }
         screenName.setText("Manage Profile")
         registerAccount.setText("Update Profile")
@@ -200,6 +207,21 @@ class RegisterForAnAccount : AppCompatActivity() {
             startActivity(intent)
         }.addOnFailureListener {
             Toast.makeText(this@RegisterForAnAccount, "Unable To Register Account", Toast.LENGTH_SHORT).show()
+        }
+    }
+    public fun updateData(){
+        progressBar.visibility = View.VISIBLE
+        val updateUser:HashMap<String,Any> = HashMap()
+        updateUser.put("lastName",userLastName.text.toString())
+        updateUser.put("emailAddress",userEmail.text.toString())
+        val databaseLink = Firebase.firestore
+        databaseLink.collection("Users").document(userDocId!!).set(updateUser).addOnSuccessListener {
+            progressBar.visibility = View.GONE
+            Toast.makeText(this@RegisterForAnAccount, "Profile Updated", Toast.LENGTH_SHORT).show()
+            finish()
+        }.addOnFailureListener {
+            progressBar.visibility = View.GONE
+            Toast.makeText(this@RegisterForAnAccount, "Unable to update profile", Toast.LENGTH_SHORT).show()
         }
     }
     private fun closeKeyboard(view: EditText)

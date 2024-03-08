@@ -127,6 +127,7 @@ class HomeScreen : AppCompatActivity() {
         val logoutNo:Button = logoutPopup.findViewById(R.id.logout_no)
         logoutPopup.show()
         logoutYes.setOnClickListener {
+            logoutPopup.dismiss()
             firebaseAuth.signOut()
             val editor:SharedPreferences.Editor = sharedPreferences.edit()
             editor.putString("signinuser","")
