@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#ff0000</color>
     <color name="castgrey">#A6FFFFFF</color>
+    <color name="transparentcolour">#00000000</color>
 </resources>

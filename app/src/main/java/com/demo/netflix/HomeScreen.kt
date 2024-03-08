@@ -1,9 +1,13 @@
 package com.demo.netflix
+import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager.LayoutParams
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,6 +33,7 @@ class HomeScreen : AppCompatActivity() {
     lateinit var addTitle:TextView
     lateinit var addCategory:TextView
     val databaseLink = Firebase.firestore
+    lateinit var manageProfile:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
@@ -52,6 +57,7 @@ class HomeScreen : AppCompatActivity() {
         loggedinUserFirstName = findViewById(R.id.loggedinuserfirstname)
         addTitle = findViewById(R.id.addtitlescreentext)
         addCategory = findViewById(R.id.addcategoryscreentext)
+        manageProfile = findViewById(R.id.manageprofilescreentext)
     }
     fun getData()
     {
@@ -99,13 +105,7 @@ class HomeScreen : AppCompatActivity() {
             }
         }
         logoutNavDrawer.setOnClickListener {
-            firebaseAuth.signOut()
-            val editor:SharedPreferences.Editor = sharedPreferences.edit()
-            editor.putString("signinuser","")
-            editor.putBoolean("userloggedin",false)
-            editor.apply()
-            val intent = Intent(this@HomeScreen,LoginScreen::class.java)
-            startActivity(intent)
+            logoutPopupAction()
         }
         addTitle.setOnClickListener {
             val intent = Intent(this@HomeScreen,AddTitle::class.java)
@@ -114,6 +114,31 @@ class HomeScreen : AppCompatActivity() {
         addCategory.setOnClickListener {
             val intent = Intent(this@HomeScreen,AddCategory::class.java)
             startActivity(intent)
+        }
+        manageProfile.setOnClickListener {
+            val intent = Intent(this@HomeScreen,RegisterForAnAccount::class.java)
+            startActivity(intent)
+        }
+    }
+    fun logoutPopupAction()
+    {
+        val logoutPopup = Dialog(this)
+        logoutPopup.setContentView(R.layout.logout_popup)
+        logoutPopup.window!!.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        val logoutYes:Button = logoutPopup.findViewById(R.id.logout_yes)
+        val logoutNo:Button = logoutPopup.findViewById(R.id.logout_no)
+        logoutPopup.show()
+        logoutYes.setOnClickListener {
+            firebaseAuth.signOut()
+            val editor:SharedPreferences.Editor = sharedPreferences.edit()
+            editor.putString("signinuser","")
+            editor.putBoolean("userloggedin",false)
+            editor.apply()
+            val intent = Intent(this@HomeScreen,LoginScreen::class.java)
+            startActivity(intent)
+        }
+        logoutNo.setOnClickListener {
+            logoutPopup.dismiss()
         }
     }
     private fun fragmentDisplay(fragment:Fragment)
