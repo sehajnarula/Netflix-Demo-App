@@ -26,10 +26,8 @@ class HomeScreen : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     lateinit var logoutNavDrawer:TextView
     lateinit var loggedInUserPhoneNumber:TextView
-    var loggedInuserData:String?=null
     lateinit var loggedinUserFirstName:TextView
     lateinit var firebaseAuth: FirebaseAuth
-     val userDataList:ArrayList<UserData> = ArrayList()
     lateinit var addTitle:TextView
     lateinit var addCategory:TextView
     val databaseLink = Firebase.firestore
