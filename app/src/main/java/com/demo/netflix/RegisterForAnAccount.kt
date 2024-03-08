@@ -42,15 +42,7 @@ class RegisterForAnAccount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_for_an_account)
-        screenName = findViewById(R.id.screenname)
-        backArrow = findViewById(R.id.backarrow)
-        userFirstName = findViewById(R.id.userfirstname)
-        userLastName = findViewById(R.id.userlastname)
-        userDob = findViewById(R.id.userdob)
-        userEmail = findViewById(R.id.useremail)
-        userPhoneNumber = findViewById(R.id.usersignupnumber)
-        progressBar = findViewById(R.id.progressloader)
-        registerAccount = findViewById(R.id.registeraccountbutton)
+        initializeData()
         calendar = Calendar.getInstance()
         sharedPreferences = getSharedPreferences(packageName, MODE_PRIVATE)
         loginScreenPhoneNumber = intent.getStringExtra("registernumber")
@@ -59,6 +51,7 @@ class RegisterForAnAccount : AppCompatActivity() {
         userDob.setOnClickListener {
             datePicker()
         }
+        manageUserProfileData()
         registerAccount.setOnClickListener {
         if (TextUtils.isEmpty(userFirstName.text.toString()))
         {
@@ -98,6 +91,32 @@ class RegisterForAnAccount : AppCompatActivity() {
         backArrow.setOnClickListener {
             finish()
         }
+    }
+    public fun initializeData(){
+        screenName = findViewById(R.id.screenname)
+        backArrow = findViewById(R.id.backarrow)
+        userFirstName = findViewById(R.id.userfirstname)
+        userLastName = findViewById(R.id.userlastname)
+        userDob = findViewById(R.id.userdob)
+        userEmail = findViewById(R.id.useremail)
+        userPhoneNumber = findViewById(R.id.usersignupnumber)
+        progressBar = findViewById(R.id.progressloader)
+        registerAccount = findViewById(R.id.registeraccountbutton)
+    }
+    fun manageUserProfileData()
+    {
+       val userData = sharedPreferences.getString("signinuser","")
+       val getUserData = Gson().fromJson(userData,UserData::class.java)
+       if (getUserData!=null && !getUserData.userId.isNullOrEmpty())
+       {
+           userFirstName.setText(getUserData.firstName)
+           userLastName.setText(getUserData.lastName)
+           userPhoneNumber.setText(getUserData.mobileNumber)
+           userEmail.setText(getUserData.emailAddress)
+           userDob.setText(getUserData.dateOfBirth)
+       }
+        screenName.setText("Manage Profile")
+        registerAccount.setText("Update Profile")
     }
     lateinit var calendar : Calendar
     public fun datePicker()
@@ -155,7 +174,6 @@ class RegisterForAnAccount : AppCompatActivity() {
         putUserData.put("dateOfBirth",userDob.text.toString())
         putUserData.put("emailAddress",userEmail.text.toString())
         putUserData.put("mobileNumber",userPhoneNumber.text.toString())
-
         var ref = databaseReference.collection("Users")
         var id = ref.document().id
         ref.document(id).set(putUserData).addOnSuccessListener {
@@ -178,25 +196,7 @@ class RegisterForAnAccount : AppCompatActivity() {
             val intent = Intent(this@RegisterForAnAccount,DemoNetflixHomePage::class.java)
             startActivity(intent)
         }.addOnFailureListener {
-
         }
-//        databaseReference.collection("Users").document().set(putUserData).addOnSuccessListener {
-//            Toast.makeText(this@RegisterForAnAccount, "Account Registered", Toast.LENGTH_SHORT).show()
-//            Log.d("useridsaved", userDocId!!)
-//            progressBar.visibility = View.GONE
-//            val userData:UserData?=null
-//            userData!!.userId = userDocId
-//            userData!!.dateOfBirth = userDob.text.toString()
-//            userData!!.emailAddress = userEmail.text.toString()
-//            userData!!.firstName = userFirstName.text.toString()
-//            userData!!.lastName = userLastName.text.toString()
-//            userData!!.mobileNumber = userPhoneNumber.text.toString()
-//            val intent = Intent(this@RegisterForAnAccount,DemoNetflixHomePage::class.java)
-//            startActivity(intent)
-//        }.addOnFailureListener {
-//            Toast.makeText(this@RegisterForAnAccount, "Unable to register the account", Toast.LENGTH_SHORT).show()
-//            progressBar.visibility = View.GONE
-//        }
     }
     private fun closeKeyboard(view: EditText)
     {
